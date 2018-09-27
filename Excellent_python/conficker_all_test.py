@@ -1,4 +1,4 @@
-#
+#this script is all of the conficker
 
 import os
 import optparse

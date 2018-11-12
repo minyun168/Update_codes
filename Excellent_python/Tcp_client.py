@@ -6,7 +6,7 @@ target_host = "www.baidu.com"
 target_port = "80"
 
 #build a socket object 
-client = socket.socket(socket.AF_INET,socket.socket_STREAM)
+client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
 
 #connect client
 client.connect((target_host,target_port))

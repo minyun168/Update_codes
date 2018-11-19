@@ -50,3 +50,56 @@ def main():
 			listen = True
 		elif o in ()
 
+
+
+
+main()
+
+
+def client_sender(buffer):
+	client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+
+	try:
+		#connect to target host
+		client.connect((target,port))
+
+		if len(buffer):          #1:
+			client.send(buffer)
+
+
+		while true:
+			#
+			#now wait for data of responsing 
+			recv_len = 1
+			response = ""
+
+			while recv_len:      #2:
+				data = client.recv(4096)
+				recv_len = len(data)
+				response+= data
+
+				if recv_len < 4096:
+					break
+				
+			print response
+
+			#wait for more input
+			buffer = raw_input("")   #3:
+			buffer += "\n"
+
+			#send buffer
+			client.send(buffer)
+
+	except:
+		print "[*] Exception! Exiting."
+    	client.close()
+
+
+
+def server_loop():
+	global target
+
+	#
+
+
+

@@ -19,8 +19,10 @@ sef server_loop(local_host,local_port,remote_host,remote_port,receive_first):
 
 	srver.listem(5)
 
-	while TRue:
+	while True:
 
 		client_socket, addr = server.accept()
 		print "[==>+] Received incoming connection from %s:%dd" %(addr[0],addr[1])
 		proxy_thread = threading.Threading(target=proxy_handler,arg=(lient_socket,remote_port,receive_first))
+
+		proxy_thread.start()

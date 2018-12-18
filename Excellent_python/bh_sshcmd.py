@@ -1,4 +1,5 @@
-#
+#Run in windows
+#When the target didn't have the ssh server                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                																																																																																																																																																																																																																																																	  
 
 import threading
 import paramiko

